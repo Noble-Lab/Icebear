@@ -1,5 +1,6 @@
 # Cross-species prediction and comparison
-[Icebear_scheme.pdf](https://github.com/Noble-Lab/Icebear/files/13232135/Icebear_scheme.pdf)
+![model](https://github.com/Noble-Lab/Icebear/assets/20168747/93b24d7a-07d8-44f5-a1f7-1348a0f1a9b0)
+
 
 The cross-species model can automatically correct batch, species and other effects (e.g. sex), and be applied to 
 
