@@ -25,7 +25,7 @@ generate_output.py builds separate autoencoders for each domain, and then connec
 Loss = reconstr_loss of each domain + prediction_error of co-assay data from one domain to the other.
 """
 
-def pred_normexp(autoencoder, rna_data, outdir, target_species, target_batch, batch_size=128):
+def pred_normexp(autoencoder, rna_data, outdir, target_species, target_batch, output_prefix, batch_size=128):
     """
     predict denoised scRNA-seq profiles that is projected to a reference (target species and target batch) so that they are directly comparable 
     Parameters
@@ -83,8 +83,7 @@ def pred_embedding(autoencoder, rna_data, output_prefix, batch_size=128):
     umap_embedding_mat = np.concatenate((embedding, np.array(batch_label)[:, None], np.array(celltype_label)[:, None], np.array(species_label)[:, None]), axis=1)
     
     np.savetxt(output_prefix+'_umap.txt', umap_embedding_mat, delimiter='\t', fmt='%s')
-    if True:
-        os.system('Rscript ./plot_umap.R '+output_prefix)
+	#os.system('Rscript ./plot_umap.R '+output_prefix)
 
 
 
@@ -389,7 +388,7 @@ def pred(outdir, input_h5ad, sim_url, target_species, target_batch, dispersion, 
         output_prefix = sim_url + '_pred_'
 
         ## output normalized expression on target species space (with all species translated to target species)
-        pred_normexp(autoencoder, rna_data, output_prefix, target_species, target_batch)
+        pred_normexp(autoencoder, rna_data, output_prefix, target_species, target_batch, output_prefix)
 
 
 def main(args):
