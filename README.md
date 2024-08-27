@@ -10,10 +10,15 @@ The cross-species model can automatically correct batch, species and other effec
 
 
 ## Installation:
+Install through conda:\
 ```conda env create -f environment.yml```
 
+Install through docker (recommended):\
+```apptainer pull docker://bearfam/bears```
 
 ## example run:
+(If using docker: ```apptainer shell --nv bears_latest.sif```)
+
 ```cd bin/```
 ```bash ./run.sh```
 
@@ -43,13 +48,13 @@ Where input_h5ad is the path of input h5ad file
 
 ### 2. Cross-species imputation: 
 
-For cross-species gene expression prediction, the target species and batch needs to be specified, so that the output gene expression profile translated from all current data to the target batch and species:
+For cross-species gene expression prediction, the target species and batch need to be specified so that the output gene expression profile is translated from all current data to the target batch and species:
 `python ./run_pred.py --input_h5ad $input_h5ad --train train --predict expression --target_species 1 --target_batch 0`
 
 
 ## Hyperparameter tuning:
 The model is fairly robust to hyperparameters.
-There are two main hyperparameters to tune: learning rate (default is 0.001) and whether to use discriminator to further align datasets across species (default is none).
-To alter hyperparameters, users can replace input_h5ad file in ```./run.sh``` to do grid search on their own data.
+There are two main hyperparameters to tune: learning rate (the default is 0.001) and whether to use a discriminator to further align datasets across species (the default is none).
+To alter hyperparameters, users can replace input_h5ad file in ```./run.sh```for grid search on their own data.
 
 The output mmd score (in "_mmd.txt") can be used to select best model, where models with lower mmd score should perform better cross-species alignment.
