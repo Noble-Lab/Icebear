@@ -10,13 +10,13 @@ The cross-species model can automatically correct batch, species and other effec
 
 
 ## Installation:
-Install through conda:\
+Install through conda:
 ```
 conda env create -f environment.yml
 conda activate icebear
 ```
 
-Install through docker (recommended):\
+Install through docker (recommended):
 ```
 apptainer pull docker://bearfam/bears
 apptainer shell --nv bears_latest.sif
