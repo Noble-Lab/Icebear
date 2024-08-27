@@ -1,4 +1,4 @@
-name: tf_gpu
+name: icebear
 channels:
   - anaconda
   - conda-forge
