@@ -39,7 +39,7 @@ gene expression count matrix (rna_adata.X)
 
 gene annotation (rna_adata.var)
 
-cell annotation (rna_adata.obs): to enable cross-species imputation/alignment and batch correction, rna_adata.obs needs to contain "species" column (e.g. '0' 'human' 'mouse') and "batch" columns (e.g. '1' '0').  
+cell annotation (rna_adata.obs): to enable cross-species imputation/alignment and batch correction, rna_adata.obs needs to contain a "species" column (e.g. '0' 'human' 'mouse'). Optional columns includes: "batch" columns (e.g. '1' '0') that can represent batch, condition, or organs that the cells are collected from. Columns that represents cell type or tissue information, which can be used on the prediction and validation stage and is indicated using the --group argument.
 
 Example input data: ../data/example.h5ad
 
@@ -48,14 +48,14 @@ Example input data: ../data/example.h5ad
 
 ### 1. Cross-species alignment:
 
-```python ./run_pred.py --input_h5ad $input_h5ad --train train --predict embedding```
+```python ./run_pred.py --input_h5ad $input_h5ad --train train --group celltype --predict embedding```
 Where input_h5ad is the path of input h5ad file
 
 
 ### 2. Cross-species imputation: 
 
 For cross-species gene expression prediction, the target species and batch need to be specified so that the output gene expression profile is translated from all current data to the target batch and species:
-`python ./run_pred.py --input_h5ad $input_h5ad --train train --predict expression --target_species 1 --target_batch 0`
+`python ./run_pred.py --input_h5ad $input_h5ad --train train --predict expression --target_species 1 --target_batch 0 --group celltype`
 
 
 ## Hyperparameter tuning:
